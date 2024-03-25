@@ -4,8 +4,57 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <canvas></canvas>
+        <main>
+            <div class="display"> 
+                <h1> EMULATOR for CHIP8</h1>
+                <canvas id="screen"></canvas>
+                <script type="module" src="./src/Index.js"></script>
 
-        <script type="module" src="scripts/chip8.js"></script>
+                <p>References:</p>
+                <p>http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#2.2</p>
+                <p>https://tobiasvl.github.io/blog/write-a-chip-8-emulator/</p>
+            </div>
+            
+        </main>
     </body>
 </html>
+
+<!--
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <canvas id="screen"></canvas>
+
+        <script type="module" src="./chip8.js"></script>
+    </body>
+</html>
+
+--------------------------------
+
+For some reason the type="module" fixed everything. Maybe its because their chip8 is formatted different to our cpu.
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <div class="display"> 
+                <h1> EMULATOR for CHIP8</h1>
+                <canvas id="screen"></canvas>
+                <script src="./chip8.js"></script>
+                <p>References:</p>
+                <p>http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#2.2</p>
+                <p>https://tobiasvl.github.io/blog/write-a-chip-8-emulator/</p>
+            </div>
+            
+        </main>
+    </body>
+</html>
+
+-->
