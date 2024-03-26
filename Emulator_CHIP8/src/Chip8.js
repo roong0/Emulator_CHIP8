@@ -1,4 +1,3 @@
-//import Keyboard from "./Keyboard";
 const speed = 10; // Used too speed up/down. Chip8 designed for 60Hz
 
 class Chip8 {
@@ -13,14 +12,13 @@ class Chip8 {
         this.stack = [];
         this.sp = 0;
 
-        this.paused = false; //For F x0A
+        this.paused = false;
         this.speed = speed;
 
         // Input/Outputs
         this.display = display;
         this.keyboard = keyboard;
         this.speaker = speaker;
-        //Sound
     }
 
     // Sprites are stored from 0x0000 onwards
@@ -48,9 +46,9 @@ class Chip8 {
         }
     }
 
-    loadProgramIntoMemory(program) { // Is this the ROM
-        for (let loc = 0; loc < program.length; loc++) {
-            this.memory[0x200 + loc] = program[loc];
+    loadProgramIntoMemory(rom) { // Is this the ROM
+        for (let location = 0; location < rom.length; location++) {
+            this.memory[0x200 + location] = rom[location];
         }
     }
 
@@ -65,7 +63,6 @@ class Chip8 {
     }
 
     sound() {
-        // console.log("SOUND!");
         if(this.soundTimer > 0)
             this.speaker.play();
         else
@@ -76,20 +73,19 @@ class Chip8 {
         for (let i = 0; i < this.speed; i++) {
             if (!this.paused) {
                 let instruction = (this.memory[this.pc] << 8 | this.memory[this.pc + 1]);
-                // console.log("Instruction:" + instruction)
+                this.pc += 2;
                 this.executeInstruction(instruction);
-                 // SHIFT PCCOUNTER INTO HERE
+                
             }
         }
         if (!this.paused) {
             this.updateTimers();
         }
-        this.sound(); // FIX THIS!!
-        this.display.render(); // Dont need to rerender every cycle, only when display changes.
+        this.sound();
+        this.display.render();
     }
 
     executeInstruction(instruction) {
-        this.pc += 2; // Move this elsewhere
         // Would likely run faster if these moved into each switch so only the relevant ones are used.
         //let nnn = addr = (instruction & 0x0FFF); 
         //let n = nibble = (instruction & 0x000F);
@@ -228,7 +224,6 @@ class Chip8 {
                         }
                         break;
                     case 0xA1:
-                        //console.log("KEY:"+this.v[x]);//remove this
                         if (!this.keyboard.isKeyPressed(this.v[x])) { // SKNP Vx
                             this.pc += 2;
                         }

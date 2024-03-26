@@ -1,17 +1,12 @@
 const SCALE = 10; // Used to scale display (Original is 64x32)
 
-// Write stuff about how this works.
-// Display used to store the values. This only is updated once you write the display to the canvas.
-
+// Display used to store the values. Canvas must then be updated.
 class Display {
     constructor(canvas) {
         this.scale = SCALE;
         this.cols = 64;
         this.rows = 32;
-        this.display = new Array(this.cols*this.rows); //1D array
-        //for(let i=0; i < this.cols*this.rows; i++) // DOnt need to initialise??
-        //    this.display[i] = 0;
-
+        this.display = new Array(this.cols*this.rows);
             this.canvas = canvas;
             this.canvas.width = this.cols * this.scale;
             this.canvas.height = this.rows * this.scale;
@@ -29,7 +24,7 @@ class Display {
         else if(y<0)
             y += this.rows;
 
-        this.display[x + (y * this.cols)] ^= 1; // Added using XOR
+        this.display[x + (y * this.cols)] ^= 1; // Set using XOR
         return !this.display[x + (y * this.cols)];// != 1; // Whats the point of returning this?
     }
     clear() {
@@ -45,7 +40,7 @@ class Display {
             let y = Math.floor(i / this.cols) * this.scale;
 
             if (this.display[i]) { //Sets pixel if required
-                this.ctx.fillStyle = '#000'; // Change colour later
+                this.ctx.fillStyle = 'white'; // Change colour later
                 this.ctx.fillRect(x, y, this.scale, this.scale);
             }
         }

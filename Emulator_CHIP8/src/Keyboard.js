@@ -21,7 +21,6 @@ class Keyboard {
         }
         this.keysPressed = [];
         this.onNextKeyPress = null;
-        // WHAT DO THESE DO??
         window.addEventListener('keydown', this.onKeyDown.bind(this), false);
         window.addEventListener('keyup', this.onKeyUp.bind(this), false);
     }
@@ -32,9 +31,7 @@ class Keyboard {
     onKeyDown(event) {
         let key = this.keymap[event.which];
         this.keysPressed[key] = true;
-    
-        // Make sure onNextKeyPress is initialized and the pressed key is actually mapped to a Chip-8 key
-        if (this.onNextKeyPress !== null && key) {
+       if (this.onNextKeyPress !== null && key) {
             this.onNextKeyPress(parseInt(key));
             this.onNextKeyPress = null;
         }
