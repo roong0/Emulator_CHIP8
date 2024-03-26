@@ -65,7 +65,7 @@ class Chip8 {
     }
 
     sound() {
-        console.log("SOUND!");
+        // console.log("SOUND!");
         if(this.soundTimer > 0)
             this.speaker.play();
         else
@@ -76,7 +76,7 @@ class Chip8 {
         for (let i = 0; i < this.speed; i++) {
             if (!this.paused) {
                 let instruction = (this.memory[this.pc] << 8 | this.memory[this.pc + 1]);
-                console.log("Instruction:" + instruction)
+                // console.log("Instruction:" + instruction)
                 this.executeInstruction(instruction);
                  // SHIFT PCCOUNTER INTO HERE
             }
@@ -130,7 +130,7 @@ class Chip8 {
                 }
                 break;
             case 0x6000:
-                console.log(x);
+                //console.log(x);
                 this.v[x] = (instruction & 0xFF); // LD Vx, byte
                 break;
             case 0x7000:
@@ -228,7 +228,7 @@ class Chip8 {
                         }
                         break;
                     case 0xA1:
-                        console.log("KEY:"+this.v[x]);//remove this
+                        //console.log("KEY:"+this.v[x]);//remove this
                         if (!this.keyboard.isKeyPressed(this.v[x])) { // SKNP Vx
                             this.pc += 2;
                         }
