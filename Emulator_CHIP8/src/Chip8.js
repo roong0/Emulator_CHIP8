@@ -2,7 +2,7 @@
 const speed = 10; // Used too speed up/down. Chip8 designed for 60Hz
 
 class Chip8 {
-    constructor(display, keyboard) {
+    constructor(display, keyboard, speaker) {
         this.memory= new Uint8Array(4096); // 4096 Bytes of memory
         this.v = new Uint8Array(16); // 16 8 bit registers
         // Could change these so they are not default number type
@@ -19,6 +19,7 @@ class Chip8 {
         // Input/Outputs
         this.display = display;
         this.keyboard = keyboard;
+        this.speaker = speaker;
         //Sound
     }
 
@@ -63,6 +64,14 @@ class Chip8 {
         }
     }
 
+    sound() {
+        console.log("SOUND!");
+        if(this.soundTimer > 0)
+            this.speaker.play();
+        else
+            this.speaker.stop();
+    }
+
     cycle() {
         for (let i = 0; i < this.speed; i++) {
             if (!this.paused) {
@@ -75,7 +84,7 @@ class Chip8 {
         if (!this.paused) {
             this.updateTimers();
         }
-        // this.playSound(); FIX THIS!!
+        this.sound(); // FIX THIS!!
         this.display.render(); // Dont need to rerender every cycle, only when display changes.
     }
 
