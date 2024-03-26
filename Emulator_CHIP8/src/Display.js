@@ -9,8 +9,8 @@ class Display {
         this.cols = 64;
         this.rows = 32;
         this.display = new Array(this.cols*this.rows); //1D array
-        for(let i=0; i < this.cols*this.rows; i++)
-            this.display[i] = 0;
+        //for(let i=0; i < this.cols*this.rows; i++) // DOnt need to initialise??
+        //    this.display[i] = 0;
 
             this.canvas = canvas;
             this.canvas.width = this.cols * this.scale;
